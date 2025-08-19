@@ -1,0 +1,20 @@
+[install]
+# Équivalent à --production
+production = false
+
+# Registre npm personnalisé
+registry = "https://registry.npmjs.org/"
+
+# Cache des packages
+cache = true
+
+[test]
+# Préchargement pour les tests
+preload = ["./test/setup.ts"]
+
+# Timeout par défaut
+timeout = 5000
+
+[build]
+# Target de build par défaut
+target = "bun"

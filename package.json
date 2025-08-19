@@ -1,0 +1,45 @@
+{
+  "name": "eklesia",
+  "version": "0.1.0",
+  "description": "Eklesia is a library for orchestrating AI agent interactions in simulated environments across any backend or local setup.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "bun run scripts/build.ts",
+    "dev": "bun run scripts/dev.ts",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "lint": "bun run eslint src/**/*.ts",
+    "format": "bun run prettier --write src/**/*.ts",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "bun run build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0"
+  },
+  "peerDependencies": {
+    "typescript": ">=4.5.0"
+  },
+  "keywords": ["typescript", "bun", "library"],
+  "author": "Ton Nom",
+  "license": "MIT",
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}
