@@ -39,4 +39,4 @@ const tsc = Bun.spawn(['bun', 'tsc', '--emitDeclarationOnly'], {
 });
 
 await tsc.exited;
-console.log('✅ Build terminé avec succès!');
+console.log('✅ Build completed successfully!');

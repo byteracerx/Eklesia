@@ -1,0 +1,3 @@
+- clean TODO
+- move temperature to Agent -> Provider
+- move pascal case to camel case
