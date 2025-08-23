@@ -7,9 +7,23 @@ import Environment from "./Environment";
 import Conversation from "./Conversation";
 
 import Provider from "./Provider";
-import LocalProvider from "./OpenAIGenericProvider";
+import OpenAIGenericProvider from "./OpenAIGenericProvider";
 import TerminalInputProvider from "./TerminalInputProvider";
 
 import Orchestrator from "./Orchestrator";
 
-export { Arena, Environment,Conversation, Agent,User, Provider, LocalProvider, TerminalInputProvider, Orchestrator };
+export { 
+    Arena, 
+    
+    Orchestrator,
+
+    Environment,
+    Conversation, 
+    
+    Agent,
+    User,
+    
+    Provider,
+    OpenAIGenericProvider,
+    TerminalInputProvider,
+};

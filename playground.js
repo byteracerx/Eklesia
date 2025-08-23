@@ -1,8 +1,8 @@
 // EXAMPLE TAKEN FROM : https://github.com/Farama-Foundation/chatarena/blob/a15802dd89c0d69165bb0b07e70c2bac5a7c4e36/experiments/ai_council.py
 
-import { Agent, Arena, LocalProvider, User, Conversation, TerminalInputProvider, Orchestrator } from "./src/lib";
+import { Agent, Arena, OpenAIGenericProvider, User, Conversation, TerminalInputProvider, Orchestrator } from "./src/lib";
 
-const localprovider = new LocalProvider(
+const localprovider = new OpenAIGenericProvider(
     "deepseek-llm-7b-chat.Q4_K_M", 
     `http://127.0.0.1:${8081}/v1/chat/completions`
 );

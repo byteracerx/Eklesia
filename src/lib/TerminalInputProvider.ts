@@ -7,7 +7,7 @@ export default class TerminalInputProvider extends Provider {
     }
 
     async query(_messages: Array<Message>, _temperature: number): Promise<any> {
-        const input = prompt("Human: ");
+        const input = prompt("user: ");
 
         return {
             choices: [

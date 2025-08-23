@@ -1,7 +1,6 @@
 import Provider from "./Provider";
+import ChatCompletionResponse from "./types/ChatCompletionResponse";
 import Message  from "./types/Message";
-
-const DEFAULT_TEMPERATURE = 0.7
 
 const END_OF_MESSAGE = "<EOS>"  // End of message token specified by us not OpenAI
 // const STOP = ("<|endoftext|>", END_OF_MESSAGE)  // End of sentence token
@@ -12,7 +11,6 @@ export default class Agent {
     provider: Provider | null;
     agentName: string;
     role_desc: string;
-    temperature: number;
     merge_other_agent_as_user: boolean;
     request_msg: Message | null;
 
@@ -20,14 +18,12 @@ export default class Agent {
       agentName: string, 
       role_desc: string, 
       provider: Provider | null = null,
-      temperature: number = DEFAULT_TEMPERATURE,
       merge_other_agent_as_user: boolean = true,
       request_msg: Message | null = null,
     ) {
       this.agentName = agentName;
       this.role_desc = role_desc;
       this.provider = provider || null;
-      this.temperature = temperature;
       this.merge_other_agent_as_user = merge_other_agent_as_user;
       this.request_msg = request_msg;
     }
@@ -93,23 +89,22 @@ export default class Agent {
         }
       });
 
-      const completion = await this.provider?.query(
-        messages,
-        this.temperature,
+      const completion: ChatCompletionResponse = await this.provider?.query(
+        messages
       ) as any; // TODO: clean that
-      // console.log(completion)
+      console.log(JSON.stringify(completion, null, 2))
       // console.log(completion.choices[0].message.content)
-      let response = completion.choices[0].message.content
+      let response = completion.choices[0]?.message.content
       console.log("[", this.agentName, "]")//, this.role_desc);
       console.log(response);
       console.log("=================================");
-
+      if (!response) throw new Error("No response from provider") // TODO: clean
       return response.trim();
     }
 
     async act(
       observation: Array<Message>, 
-    environment_description: string
+      environment_description: string
     ): Promise<string> {
         try {
           const response = this.#rawQuery(
