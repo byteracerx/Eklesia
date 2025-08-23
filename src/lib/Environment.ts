@@ -1,4 +1,5 @@
 import Agent from "./Agent";
+import Message from "./types/Message";
 
 export default class Environment {
     agent_names: string[];
@@ -21,10 +22,7 @@ export default class Environment {
 
     getObservation(
         agent_name: string | null = null
-    ) : Array<{
-        role: string;
-        content: string;
-      }> {
+    ) : Array<Message> {
         return [];
       }
 }

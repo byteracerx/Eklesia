@@ -2,3 +2,7 @@
 - move temperature to Agent -> Provider;
 - move pascal case to camel case;
 - change parameters variable (x,y,z) to a object {x:x,y:y,z:z};
+- implementation des exemple dans chatarena/examples/chameleon.json
+    Arena.from_config("examples/tic-tac-toe.json").launch_cli()
+    equivalent to config ? methode integre pour chaque instance agent, arena, etc
+- integrer les api/modele options de game_arena voire +

@@ -1,11 +1,12 @@
 import Provider from "./Provider";
+import Message from "./types/Message";
 
 export default class TerminalInputProvider extends Provider {
     constructor() {
         super();
     }
 
-    async query(_messages: Array<{ role: string; content: string }>, _temperature: number): Promise<any> {
+    async query(_messages: Array<Message>, _temperature: number): Promise<any> {
         const input = prompt("Human: ");
 
         return {

@@ -1,4 +1,5 @@
 import Provider from "./Provider";
+import Message from "./types/Message";
 
 export default class LocalProvider extends Provider {
 
@@ -12,7 +13,7 @@ export default class LocalProvider extends Provider {
         this.endpointUrl = endpointUrl;
     }
 
-    async query(messages: Array<{ role: string; content: string }>, temperature: number): Promise<any> {
+    async query(messages: Array<Message>, temperature: number): Promise<any> {
         const res = await fetch(this.endpointUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },

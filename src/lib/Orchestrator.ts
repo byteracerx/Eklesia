@@ -1,5 +1,6 @@
 import Agent from "./Agent";
 import Environment from "./Environment";
+import Message from "./types/Message";
 
 export default class Orchestrator {
   environment: Environment;
@@ -20,10 +21,7 @@ export default class Orchestrator {
     const nextagent = agents.find(p => p.agentName === nextagentName);
     if (nextagent === undefined) return;
 
-    const observation: Array<{
-      role: string;
-      content: string;
-    }> = this.environment.getObservation(
+    const observation: Array<Message> = this.environment.getObservation(
       null
       // nextagentName
     )

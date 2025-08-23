@@ -1,4 +1,5 @@
 import Provider from "./Provider";
+import Message  from "./types/Message";
 
 const DEFAULT_TEMPERATURE = 0.7
 
@@ -13,7 +14,7 @@ export default class Agent {
     role_desc: string;
     temperature: number;
     merge_other_agent_as_user: boolean;
-    request_msg: { role: string; content: string } | null;
+    request_msg: Message | null;
 
     constructor(
       agentName: string, 
@@ -21,7 +22,7 @@ export default class Agent {
       provider: Provider | null = null,
       temperature: number = DEFAULT_TEMPERATURE,
       merge_other_agent_as_user: boolean = true,
-      request_msg: { role: string; content: string } | null = null,
+      request_msg: Message | null = null,
     ) {
       this.agentName = agentName;
       this.role_desc = role_desc;
@@ -33,10 +34,7 @@ export default class Agent {
 
     // @retry(stop=stop_after_attempt(6), wait=wait_random_exponential(min=1, max=60))
     async #rawQuery(
-      history_messages: Array<{
-        role: string;
-        content: string;
-      }> = [],
+      history_messages: Array<Message> = [],
       environment_description: string | null = null,
     ): Promise<string> {
 
@@ -44,12 +42,9 @@ export default class Agent {
         ? `You are a helpful assistant.\n${environment_description.trim()}\n${BASE_PROMPT}\n\nYour name is ${this.agentName}.\n\nYour role:${this.role_desc}`
         : `You are a helpful assistant. Your name is ${this.agentName}.\n\nYour role:${this.role_desc}\n\n${BASE_PROMPT}`;
 
-      let all_messages: Array<{
-        role: string;
-        content: string;
-      }> = [{role: SYSTEM_NAME, content: system_prompt}]
+      let all_messages: Array<Message> = [{role: SYSTEM_NAME, content: system_prompt}]
 
-      history_messages.forEach((msg: { role: string; content: string }, i: number) => {
+      history_messages.forEach((msg: Message, i: number) => {
         if (msg.role == SYSTEM_NAME) {
           all_messages.push(msg)
         } else {
@@ -65,10 +60,7 @@ export default class Agent {
           {role: SYSTEM_NAME, content: `Now you speak, ${this.agentName}.${END_OF_MESSAGE}`}
       );
 
-      const messages: Array<{
-        role: string;
-        content: string;
-      }> = [];
+      const messages: Array<Message> = [];
   
       all_messages.forEach((msg, i) => {
         if (msg.role === SYSTEM_NAME) {
@@ -116,12 +108,9 @@ export default class Agent {
     }
 
     async act(
-      observation: Array<{
-      role: string;
-      content: string;
-    }>, 
+      observation: Array<Message>, 
     environment_description: string
-    ): Promise<string> { //TODO: clean
+    ): Promise<string> {
         try {
           const response = this.#rawQuery(
               observation,

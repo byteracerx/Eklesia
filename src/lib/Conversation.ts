@@ -1,7 +1,8 @@
 import Environment from "./Environment";
+import Message from "./types/Message";
 
 export default class Conversation extends Environment {
-  messages: { role: string, content: string }[] = [];
+  messages: Array<Message> = [];
   next_agent_idx = 0
 
   constructor(
@@ -11,7 +12,8 @@ export default class Conversation extends Environment {
   }
 
   add_message(agent_name: string, content: string) {
-    this.messages.push({ role: agent_name, content: content });
+    const new_message: Message = { role: agent_name, content: content };
+    this.messages.push(new_message);
   }
 
   print() {
@@ -20,10 +22,7 @@ export default class Conversation extends Environment {
 
   getObservation(
     agent_name: string | null = null
-  ) : Array<{
-    role: string;
-    content: string;
-  }>{
+  ) : Array<Message>{
     if (agent_name === null) return this.messages;
     return this.messages.filter(m => m.role === agent_name);
   }
