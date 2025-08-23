@@ -1,3 +1,4 @@
-- clean TODO
-- move temperature to Agent -> Provider
-- move pascal case to camel case
+- clean TODO;
+- move temperature to Agent -> Provider;
+- move pascal case to camel case;
+- change parameters variable (x,y,z) to a object {x:x,y:y,z:z};

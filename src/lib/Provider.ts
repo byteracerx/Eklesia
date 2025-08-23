@@ -1,7 +1,6 @@
 export default class Provider {
 
-    constructor() {
-    }
+    constructor() {}
 
     async query(messages: Array<{ role: string; content: string }>, temperature: number) {};  
 }

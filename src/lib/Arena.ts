@@ -4,15 +4,15 @@ import Orchestrator from "./Orchestrator";
 
 export default class Arena {
   orchestrator: Orchestrator;
-  players: Agent[];
+  agents: Agent[];
   environment_description: string;
 
   constructor(
-    players: Agent[],
+    agents: Agent[],
     environment_description: string,
     orchestrator: Orchestrator,
   ) {
-    this.players = players;
+    this.agents = agents;
     this.environment_description = environment_description;
     this.orchestrator = orchestrator;
   }
@@ -24,7 +24,7 @@ export default class Arena {
   async run (max_steps: number = 100) {
     for (let i = 0; i < max_steps; i++) {
       await this.orchestrator.step(
-        this.players,
+        this.agents,
         this.environment_description,
       );
     }

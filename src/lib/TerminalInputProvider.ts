@@ -1,6 +1,6 @@
-import { Provider } from ".";
+import Provider from "./Provider";
 
-export default class HumanProvider extends Provider {
+export default class TerminalInputProvider extends Provider {
     constructor() {
         super();
     }

@@ -54,7 +54,7 @@ Pull requests are welcome! Feel free to open issues for bugs, feature requests, 
 
 ### Authors
 
-- **Leopc1977** – *Initial work* – [GitHub](https://github.com/Leopc1977) – Discord: Leopc1977
+- **Leopc1977** – *Initial work* – [GitHub](https://github.com/Leopc1977) – Discord: [Leopc1977](https://discordapp.com/users/399631094514843669)
 
 ---
 
@@ -63,6 +63,7 @@ Pull requests are welcome! Feel free to open issues for bugs, feature requests, 
 - Inspired by:
   - [ChatArena](https://github.com/Farama-Foundation/chatarena) by [Farama Foundation](https://github.com/Farama-Foundation)
   - [House](https://github.com/sausheong/house) by [sausheong](https://github.com/sausheong)
+  - [game_arena](https://github.com/google-deepmind/game_arena) by [Google DeepMind](https://github.com/google-deepmind)
 
 - Special thanks to the AI & dev communities for ideas and feedback.
 

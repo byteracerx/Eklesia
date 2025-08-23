@@ -2,20 +2,16 @@ import Environment from "./Environment";
 
 export default class Conversation extends Environment {
   messages: { role: string, content: string }[] = [];
-  #current_turn = 0
-  next_player_idx = 0
+  next_agent_idx = 0
 
   constructor(
-    player_names: string[],
-    parallel: boolean,
-    moderator_visibility: string,
-    moderator_period: string,
+    agent_names: string[],
   ) {
-    super(player_names, parallel, moderator_visibility, moderator_period);
+    super(agent_names);
   }
 
-  add_message(player_name: string, content: string) {
-    this.messages.push({ role: player_name, content: content });
+  add_message(agent_name: string, content: string) {
+    this.messages.push({ role: agent_name, content: content });
   }
 
   print() {
@@ -23,12 +19,12 @@ export default class Conversation extends Environment {
   }
 
   getObservation(
-    player_name: string | null = null
+    agent_name: string | null = null
   ) : Array<{
     role: string;
     content: string;
   }>{
-    if (player_name === null) return this.messages;
-    return this.messages.filter(m => m.role === player_name);
+    if (agent_name === null) return this.messages;
+    return this.messages.filter(m => m.role === agent_name);
   }
 }

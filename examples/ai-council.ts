@@ -1,6 +1,6 @@
 // EXAMPLE TAKEN FROM : https://github.com/Farama-Foundation/chatarena/blob/a15802dd89c0d69165bb0b07e70c2bac5a7c4e36/experiments/ai_council.py
 
-import { Agent, Arena, LocalProvider, User, Conversation, TerminalInputProvider, Orchestrator } from "./src/lib";
+import { Agent, Arena, LocalProvider, User, Conversation, TerminalInputProvider, Orchestrator } from "../dist";
 
 const localprovider = new LocalProvider(
     "deepseek-llm-7b-chat.Q4_K_M", 
