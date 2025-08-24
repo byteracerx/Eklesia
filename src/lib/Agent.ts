@@ -10,55 +10,55 @@ const SYSTEM_NAME = "system"
 export default class Agent {
     provider: Provider | null;
     agentName: string;
-    role_desc: string;
-    merge_other_agent_as_user: boolean;
-    request_msg: Message | null;
+    roleDesc: string;
+    mergeOtherAgentAsUser: boolean;
+    requestMsg: Message | null;
 
     constructor(
       agentName: string, 
-      role_desc: string, 
+      roleDesc: string, 
       provider: Provider | null = null,
-      merge_other_agent_as_user: boolean = true,
-      request_msg: Message | null = null,
+      mergeOtherAgentAsUser: boolean = true,
+      requestMsg: Message | null = null,
     ) {
       this.agentName = agentName;
-      this.role_desc = role_desc;
+      this.roleDesc = roleDesc;
       this.provider = provider || null;
-      this.merge_other_agent_as_user = merge_other_agent_as_user;
-      this.request_msg = request_msg;
+      this.mergeOtherAgentAsUser = mergeOtherAgentAsUser;
+      this.requestMsg = requestMsg;
     }
 
     // @retry(stop=stop_after_attempt(6), wait=wait_random_exponential(min=1, max=60))
     async #rawQuery(
-      history_messages: Array<Message> = [],
-      environment_description: string | null = null,
+      historyMessages: Array<Message> = [],
+      environmentDescription: string | null = null,
     ): Promise<string> {
 
-      const system_prompt = environment_description
-        ? `You are a helpful assistant.\n${environment_description.trim()}\n${BASE_PROMPT}\n\nYour name is ${this.agentName}.\n\nYour role:${this.role_desc}`
-        : `You are a helpful assistant. Your name is ${this.agentName}.\n\nYour role:${this.role_desc}\n\n${BASE_PROMPT}`;
+      const systemPrompt = environmentDescription
+        ? `You are a helpful assistant.\n${environmentDescription.trim()}\n${BASE_PROMPT}\n\nYour name is ${this.agentName}.\n\nYour role:${this.roleDesc}`
+        : `You are a helpful assistant. Your name is ${this.agentName}.\n\nYour role:${this.roleDesc}\n\n${BASE_PROMPT}`;
 
-      let all_messages: Array<Message> = [{role: SYSTEM_NAME, content: system_prompt}]
+      let allMessages: Array<Message> = [{role: SYSTEM_NAME, content: systemPrompt}]
 
-      history_messages.forEach((msg: Message, i: number) => {
+      historyMessages.forEach((msg: Message, i: number) => {
         if (msg.role == SYSTEM_NAME) {
-          all_messages.push(msg)
+          allMessages.push(msg)
         } else {
-          all_messages.push({
+          allMessages.push({
             role: msg.role,
             content: `${msg.content}${END_OF_MESSAGE}`,
           })
         }
       })
 
-      if (this.request_msg) all_messages.push({role: SYSTEM_NAME, content: this.request_msg.content});
-      else all_messages.push(
+      if (this.requestMsg) allMessages.push({role: SYSTEM_NAME, content: this.requestMsg.content});
+      else allMessages.push(
           {role: SYSTEM_NAME, content: `Now you speak, ${this.agentName}.${END_OF_MESSAGE}`}
       );
 
       const messages: Array<Message> = [];
   
-      all_messages.forEach((msg, i) => {
+      allMessages.forEach((msg, i) => {
         if (msg.role === SYSTEM_NAME) {
           messages.push({ role: "system", content: msg.content });
         }
@@ -70,7 +70,7 @@ export default class Agent {
           let lastMsg = messages[messages.length - 1];
       
           if (lastMsg && lastMsg.role === "user") {
-            if (this.merge_other_agent_as_user) {
+            if (this.mergeOtherAgentAsUser) {
               // Fusionner avec le dernier message user
               lastMsg.content = `${lastMsg.content}\n\n[${msg.role}]: ${msg.content}`;
             } else {
@@ -95,7 +95,7 @@ export default class Agent {
       console.log(JSON.stringify(completion, null, 2))
       // console.log(completion.choices[0].message.content)
       let response = completion.choices[0]?.message.content
-      console.log("[", this.agentName, "]")//, this.role_desc);
+      console.log("[", this.agentName, "]")//, this.roleDesc);
       console.log(response);
       console.log("=================================");
       if (!response) throw new Error("No response from provider") // TODO: clean
@@ -104,13 +104,13 @@ export default class Agent {
 
     async act(
       observation: Array<Message>, 
-      environment_description: string
+      environmentDescription: string
     ): Promise<string> {
         try {
           const response = this.#rawQuery(
               observation,
-              environment_description,
-              // request_msg=None,
+              environmentDescription,
+              // requestMsg=None,
           )
 
           return response

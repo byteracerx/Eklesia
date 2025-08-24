@@ -13,9 +13,9 @@ export default class Orchestrator {
 
   async step(
     agents: Agent[],
-    environment_description: string,
+    environmentDescription: string,
   ) {
-    const nextagentName = this.environment.get_next_agent_name();
+    const nextagentName = this.environment.getNextAgentName();
     if (nextagentName === undefined) return;
 
     const nextagent = agents.find(p => p.agentName === nextagentName);
@@ -28,7 +28,7 @@ export default class Orchestrator {
 
     const action = await nextagent.act(
       observation, 
-      environment_description
+      environmentDescription
     );
     
     // if self.environment.check_action(action, agent_name):  # action is valid
@@ -39,7 +39,7 @@ export default class Orchestrator {
     // else:  # action is invalid
     //     logging.warning(f"{agent_name} made an invalid action {action}")
     //     continue
-    this.environment.add_message(nextagentName, action);
-    this.environment.next_agent_idx = (this.environment.next_agent_idx + 1) % agents.length;
+    this.environment.addMessage(nextagentName, action);
+    this.environment.nextAgentIdx = (this.environment.nextAgentIdx + 1) % agents.length;
   }
 }

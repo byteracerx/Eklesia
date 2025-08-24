@@ -3,17 +3,17 @@ import Message from "./types/Message";
 
 export default class Conversation extends Environment {
   messages: Array<Message> = [];
-  next_agent_idx = 0
+  nextAgentIdx = 0
 
   constructor(
-    agent_names: string[],
+    agentNames: string[],
   ) {
-    super(agent_names);
+    super(agentNames);
   }
 
-  add_message(agent_name: string, content: string) {
-    const new_message: Message = { role: agent_name, content: content };
-    this.messages.push(new_message);
+  addMessage(agentName: string, content: string) {
+    const newMessage: Message = { role: agentName, content: content };
+    this.messages.push(newMessage);
   }
 
   print() {
@@ -21,9 +21,9 @@ export default class Conversation extends Environment {
   }
 
   getObservation(
-    agent_name: string | null = null
+    agentName: string | null = null
   ) : Array<Message>{
-    if (agent_name === null) return this.messages;
-    return this.messages.filter(m => m.role === agent_name);
+    if (agentName === null) return this.messages;
+    return this.messages.filter(m => m.role === agentName);
   }
 }

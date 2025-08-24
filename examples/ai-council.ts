@@ -4,7 +4,7 @@ import { Agent, Arena, OpenAIGenericProvider, User, Conversation, TerminalInputP
 
 const localprovider = new OpenAIGenericProvider(
     "deepseek-llm-7b-chat.Q4_K_M", 
-    `http://127.0.0.1:${8081}/v1/chat/completions`
+    `http://127.0.0.1:8081/v1/chat/completions`
 );
 const humanProvider = new TerminalInputProvider();
 

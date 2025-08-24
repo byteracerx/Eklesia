@@ -2,26 +2,26 @@ import Agent from "./Agent";
 import Message from "./types/Message";
 
 export default class Environment {
-    agent_names: string[];
+    agentNames: string[];
 
-    next_agent_idx = 0;
+    nextAgentIdx = 0;
 
     constructor(
-        agent_names: string[],
+        agentNames: string[],
     ) {
-        this.agent_names = agent_names;
+        this.agentNames = agentNames;
     }
 
-    add_message(nextagentName: string, action: string): void {
+    addMessage(nextAgentName: string, action: string): void {
         // throw new Error("Method not implemented.");
     }
 
-    get_next_agent_name(): string | undefined {
-        return this.agent_names[this.next_agent_idx];
+    getNextAgentName(): string | undefined {
+        return this.agentNames[this.nextAgentIdx];
     }
 
     getObservation(
-        agent_name: string | null = null
+        agentName: string | null = null
     ) : Array<Message> {
         return [];
       }
