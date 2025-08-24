@@ -1,10 +1,10 @@
 import Agent from "../Agents/Agent";
-import { Conversation } from "../Environments";
+import { ConversationEnvironment } from "../Environments";
 import Orchestrator from "./Orchestrator";
 
-export default class ConversationOrchestrator extends Orchestrator<Conversation> {
+export default class ConversationOrchestrator extends Orchestrator<ConversationEnvironment> {
   constructor(
-    environment: Conversation,
+    environment: ConversationEnvironment,
   ) {
     super(environment)
   }

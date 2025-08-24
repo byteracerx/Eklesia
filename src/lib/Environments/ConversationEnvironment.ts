@@ -1,7 +1,7 @@
 import Environment from "./Environment";
 import Message from "../types/Message";
 
-export default class Conversation extends Environment {
+export default class ConversationEnvironment extends Environment {
   messages: Array<Message> = [];
   nextAgentIdx = 0
 

@@ -1,8 +1,8 @@
-import Conversation from "./Conversation";
+import ConversationEnvironment from "./ConversationEnvironment";
 import Environment from "./Environment";
 
 export default Environment;
 
 export {
-    Conversation
+    ConversationEnvironment
 };
