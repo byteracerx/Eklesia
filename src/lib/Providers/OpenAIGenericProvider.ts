@@ -1,5 +1,5 @@
 import Provider from "./Provider";
-import Message from "./types/Message";
+import Message from "../types/Message";
 
 export default class OpenAIGenericProvider extends Provider {
 

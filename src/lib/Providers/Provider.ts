@@ -1,5 +1,5 @@
-import ChatCompletionResponse from "./types/ChatCompletionResponse";
-import Message from "./types/Message";
+import ChatCompletionResponse from "../types/ChatCompletionResponse";
+import Message from "../types/Message";
 
 const DEFAULT_TEMPERATURE = 0.7
 

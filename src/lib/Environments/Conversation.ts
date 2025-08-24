@@ -1,14 +1,14 @@
 import Environment from "./Environment";
-import Message from "./types/Message";
+import Message from "../types/Message";
 
 export default class Conversation extends Environment {
   messages: Array<Message> = [];
   nextAgentIdx = 0
 
   constructor(
-    agentNames: string[],
+    description: string = "",
   ) {
-    super(agentNames);
+    super(description);
   }
 
   addMessage(agentName: string, content: string) {

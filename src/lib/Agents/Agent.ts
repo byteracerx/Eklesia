@@ -1,8 +1,8 @@
 import { randomUUID } from "crypto";
 
-import Provider from "./Provider";
-import ChatCompletionResponse from "./types/ChatCompletionResponse";
-import Message  from "./types/Message";
+import Provider from "../Providers/Provider";
+import ChatCompletionResponse from "../types/ChatCompletionResponse";
+import Message  from "../types/Message";
 
 const END_OF_MESSAGE = "<EOS>"  // End of message token specified by us not OpenAI
 // const STOP = ("<|endoftext|>", END_OF_MESSAGE)  // End of sentence token
@@ -55,7 +55,7 @@ export default class Agent {
         }
       })
 
-      if (this.requestMsg) allMessages.push({role:  , content: this.requestMsg.content});
+      if (this.requestMsg) allMessages.push({role: SYSTEM_NAME, content: this.requestMsg.content});
       else allMessages.push(
           {role: SYSTEM_NAME, content: `Now you speak, ${this.agentName}.${END_OF_MESSAGE}`}
       );

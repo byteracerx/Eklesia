@@ -1,10 +1,10 @@
 import Agent from "./Agent";
-import Provider from "./Provider";
+import Provider from "../Providers";
 
 export default class User extends Agent {
 
   constructor(
-    provider: Provider | null = null
+    provider: Provider,
   ) {
     super("user", "", provider);
   }

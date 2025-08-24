@@ -1,19 +1,19 @@
-import Agent from "./Agent";
-import Environment from "./Environment";
-import Orchestrator from "./Orchestrator";
+import Agent from "./Agents/Agent";
+import Environment from "./Environments/Environment";
+import Orchestrator from "./Orchestrators/Orchestrator";
 
 export default class Arena {
   orchestrator: Orchestrator;
-  agents: Agent[];
-  environmentDescription: string;
+  agents: Array<Agent>;
+  environment: Environment;
 
   constructor(
-    agents: Agent[],
-    environmentDescription: string,
+    agents: Array<Agent>,
     orchestrator: Orchestrator,
+    environment: Environment,
   ) {
     this.agents = agents;
-    this.environmentDescription = environmentDescription;
+    this.environment = environment;
     this.orchestrator = orchestrator;
   }
 
@@ -25,7 +25,6 @@ export default class Arena {
     for (let i = 0; i < maxSteps; i++) {
       await this.orchestrator.step(
         this.agents,
-        this.environmentDescription,
       );
     }
   }

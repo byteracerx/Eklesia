@@ -3,7 +3,17 @@
 > ⚠️ Work in progress — Nothing is published yet. Use at your own risk.  
 > 📝 This README is temporary and subject to change.
 
-Eklesia is a library for orchestrating AI agent interactions in simulated environments across any backend or local setup.
+Eklesia was originally conceived as a **TypeScript rewrite of [ChatArena](https://github.com/Farama-Foundation/chatarena)** by the [Farama Foundation](https://github.com/Farama-Foundation), which defines multi-agent environments using Arena, Environment, Backend and Player abstractions. However, Eklesia already diverges by introducing an explicit **Orchestrator** layer—an architectural component that coordinates agents, environments, and interaction flows, making the system more modular and backend-agnostic.
+
+---
+
+## Origin & Differences
+
+- **Origin**: Inspired by [ChatArena](https://github.com/Farama-Foundation/chatarena) (Python, multi-agent language game framework) and rewritten in TypeScript.
+- **Key architectural differences**:
+  - Introduction of an explicit **Orchestrator** to manage interactions between agents and environments.
+  - Backend-agnostic design (compatibility with Elysia, Next.js, Bun, etc.).
+  - Extensible support for not just chat but also games and other interaction paradigms.
 
 ---
 
@@ -31,7 +41,7 @@ bun install
 ### Quick Start 
 
 ```js
-import * as eklesia from 'eklesia';
+import { ... } from 'eklesia';
 ```
 
 ---

@@ -1,29 +1,11 @@
-import Arena from "./Arena";
+export { default as Arena } from "./Arena";
 
-import Agent from "./Agent";
-import User from "./User";
+export { default as Agent } from "./Agents";
+export { default as Environment } from "./Environments";
+export { default as Orchestrator } from "./Orchestrators";
+export { default as Provider } from "./Providers";
 
-import Environment from "./Environment";
-import Conversation from "./Conversation";
-
-import Provider from "./Provider";
-import OpenAIGenericProvider from "./OpenAIGenericProvider";
-import TerminalInputProvider from "./TerminalInputProvider";
-
-import Orchestrator from "./Orchestrator";
-
-export { 
-    Arena, 
-    
-    Orchestrator,
-
-    Environment,
-    Conversation, 
-    
-    Agent,
-    User,
-    
-    Provider,
-    OpenAIGenericProvider,
-    TerminalInputProvider,
-};
+export * from "./Agents";
+export * from "./Environments";
+export * from "./Orchestrators";
+export * from "./Providers";
