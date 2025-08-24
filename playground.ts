@@ -1,12 +1,10 @@
-// EXAMPLE TAKEN FROM : https://github.com/Farama-Foundation/chatarena/blob/a15802dd89c0d69165bb0b07e70c2bac5a7c4e36/experiments/ai_council.py
-
-import { Agent, Arena, OpenAIGenericProvider, User, Conversation, TerminalInputProvider, ConversationOrchestrator } from "./src/lib";
+import { Agent, Arena, OpenAIGenericProvider, User, ConversationEnvironment, TerminalInputProvider, ConversationOrchestrator } from "./src/lib";
 
 const localprovider = new OpenAIGenericProvider(
     "deepseek-llm-7b-chat.Q4_K_M", 
-    `http://127.0.0.1:${8081}/v1/chat/completions`
+    `http://127.0.0.1:8081/v1/chat/completions`
 );
-const humanProvider = new TerminalInputProvider();
+const terminalInputProvider = new TerminalInputProvider();
 
 const environment_description = `
 This is a board of advisors that advices the CEO of a startup on a question that the CEO ask.
@@ -20,7 +18,7 @@ The five board members have to discuss among them. They are free to disagree wit
 Do not always agree with the CEO or the other advisors on the board.
 `;
 
-const ceo = new User(humanProvider);
+const ceo = new User(terminalInputProvider);
 
 const warren_buffett = `Warren Buffett follows the Benjamin Graham school of value investing, which looks for securities whose prices are unjustifiably low based on their intrinsic worth. He has developed several core tenets to help him employ his investment philosophy to maximum effect. These tenets fall into four categories: business, management, financial measures, and value.
 
@@ -61,7 +59,7 @@ const agent5 = new Agent(
 
 const agents = [ceo, agent1, agent2, agent3, agent4, agent5];
 
-const conversation = new Conversation(environment_description);
+const conversation = new ConversationEnvironment(environment_description);
 
 const orchestrator = new ConversationOrchestrator(conversation);
 

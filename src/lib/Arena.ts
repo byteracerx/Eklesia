@@ -2,15 +2,19 @@ import Agent from "./Agents/Agent";
 import Environment from "./Environments/Environment";
 import Orchestrator from "./Orchestrators/Orchestrator";
 
-export default class Arena {
-  agents: Array<Agent>;
-  orchestrator: Orchestrator;
-  environment: Environment;
+export default class Arena <
+  GenericAgent extends Agent = Agent,
+  GenericOrchestrator extends Orchestrator = Orchestrator,
+  GenericEnvironment extends Environment = Environment
+> {
+  agents: Array<GenericAgent>;
+  orchestrator: GenericOrchestrator;
+  environment: GenericEnvironment;
 
   constructor(
-    agents: Array<Agent>,
-    orchestrator: Orchestrator,
-    environment: Environment,
+    agents: Array<GenericAgent>,
+    orchestrator: GenericOrchestrator,
+    environment: GenericEnvironment,
   ) {
     this.agents = agents;
     this.orchestrator = orchestrator;

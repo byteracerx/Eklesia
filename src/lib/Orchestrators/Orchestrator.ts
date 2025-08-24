@@ -1,10 +1,11 @@
 import Agent from "../Agents/Agent";
 import Environment from "../Environments/Environment";
 
-export default class Orchestrator<GenericEnvironment extends Environment = Environment> {
+export default class Orchestrator<
+  GenericEnvironment extends Environment = Environment
+> {
+  protected currentAgentIndex: number = 0;
   environment: GenericEnvironment;
-
-  protected currentAgentIndex = 0;
 
   constructor(
     environment: GenericEnvironment,

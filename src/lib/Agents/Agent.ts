@@ -11,8 +11,10 @@ const SYSTEM_NAME = "system"
 
 const SIGNAL_END_OF_CONVERSATION = `<<<<<<END_OF_CONVERSATION>>>>>>${randomUUID()}`;
 
-export default class Agent {
-    provider: Provider;
+export default class Agent <
+  GenericProvider extends Provider = Provider,
+> {
+    provider: GenericProvider;
     agentName: string;
     roleDesc: string;
     mergeOtherAgentAsUser: boolean;
@@ -21,13 +23,13 @@ export default class Agent {
     constructor(
       agentName: string, 
       roleDesc: string, 
-      provider: Provider,
+      provider: GenericProvider,
       mergeOtherAgentAsUser: boolean = true,
       requestMsg: Message | null = null,
     ) {
       this.agentName = agentName;
       this.roleDesc = roleDesc;
-      this.provider = provider || null;
+      this.provider = provider;
       this.mergeOtherAgentAsUser = mergeOtherAgentAsUser;
       this.requestMsg = requestMsg;
     }
