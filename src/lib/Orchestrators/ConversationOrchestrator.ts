@@ -1,16 +1,12 @@
 import Agent from "../Agents/Agent";
 import { Conversation } from "../Environments";
-import Environment from "../Environments/Environment";
+import Orchestrator from "./Orchestrator";
 
-export default class ConversationOrchestrator {
-  environment: Conversation;
-
-  #currentAgentIndex = 0;
-
+export default class ConversationOrchestrator extends Orchestrator<Conversation> {
   constructor(
     environment: Conversation,
   ) {
-    this.environment = environment;
+    super(environment)
   }
 
   async step(
@@ -18,7 +14,7 @@ export default class ConversationOrchestrator {
   ) {
     if (agents.length === 0) return;
 
-    const currentAgent = agents[this.#currentAgentIndex];
+    const currentAgent = agents[this.currentAgentIndex];
     const observation = this.environment.getObservation(
       // currentAgent.agentName
       null,
@@ -41,6 +37,6 @@ export default class ConversationOrchestrator {
     //     continue
 
     this.environment.addMessage(currentAgent.agentName, action);
-    this.#currentAgentIndex = (this.#currentAgentIndex + 1) % agents.length;
+    this.currentAgentIndex = (this.currentAgentIndex + 1) % agents.length;
   }
 }

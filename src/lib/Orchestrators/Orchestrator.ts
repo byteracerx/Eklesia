@@ -1,13 +1,13 @@
 import Agent from "../Agents/Agent";
 import Environment from "../Environments/Environment";
 
-export default class Orchestrator {
-  environment: Environment;
+export default class Orchestrator<GenericEnvironment extends Environment = Environment> {
+  environment: GenericEnvironment;
 
-  #currentAgentIndex = 0;
+  protected currentAgentIndex = 0;
 
   constructor(
-    environment: Environment,
+    environment: GenericEnvironment,
   ) {
     this.environment = environment;
   }
@@ -17,7 +17,7 @@ export default class Orchestrator {
   ) {
     if (agents.length === 0) return;
 
-    const currentAgent = agents[this.#currentAgentIndex];
+    const currentAgent = agents[this.currentAgentIndex];
     const observation = this.environment.getObservation(
       // currentAgent.agentName
       null,
@@ -39,6 +39,6 @@ export default class Orchestrator {
     //     logging.warning(f"{agent_name} made an invalid action {action}")
     //     continue
 
-    this.#currentAgentIndex = (this.#currentAgentIndex + 1) % agents.length;
+    this.currentAgentIndex = (this.currentAgentIndex + 1) % agents.length;
   }
 }

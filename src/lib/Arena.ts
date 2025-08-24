@@ -3,8 +3,8 @@ import Environment from "./Environments/Environment";
 import Orchestrator from "./Orchestrators/Orchestrator";
 
 export default class Arena {
-  orchestrator: Orchestrator;
   agents: Array<Agent>;
+  orchestrator: Orchestrator;
   environment: Environment;
 
   constructor(
@@ -13,8 +13,8 @@ export default class Arena {
     environment: Environment,
   ) {
     this.agents = agents;
-    this.environment = environment;
     this.orchestrator = orchestrator;
+    this.environment = environment;
   }
 
   reset() {
