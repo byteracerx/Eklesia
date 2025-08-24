@@ -30,15 +30,6 @@ export default class Orchestrator<
       observation, 
       this.environment.description
     );
-    
-    // if self.environment.check_action(action, agent_name):  # action is valid
-    //     timestep = self.environment.step(
-    //         agent_name, action
-    //     )  # update the environment
-    //     break
-    // else:  # action is invalid
-    //     logging.warning(f"{agent_name} made an invalid action {action}")
-    //     continue
 
     this.currentAgentIndex = (this.currentAgentIndex + 1) % agents.length;
   }
