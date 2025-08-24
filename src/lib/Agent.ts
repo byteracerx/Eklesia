@@ -1,3 +1,5 @@
+import { randomUUID } from "crypto";
+
 import Provider from "./Provider";
 import ChatCompletionResponse from "./types/ChatCompletionResponse";
 import Message  from "./types/Message";
@@ -7,8 +9,10 @@ const END_OF_MESSAGE = "<EOS>"  // End of message token specified by us not Open
 const BASE_PROMPT = `The messages always end with the token ${END_OF_MESSAGE}.`
 const SYSTEM_NAME = "system"
 
+const SIGNAL_END_OF_CONVERSATION = `<<<<<<END_OF_CONVERSATION>>>>>>${randomUUID()}`;
+
 export default class Agent {
-    provider: Provider | null;
+    provider: Provider;
     agentName: string;
     roleDesc: string;
     mergeOtherAgentAsUser: boolean;
@@ -17,7 +21,7 @@ export default class Agent {
     constructor(
       agentName: string, 
       roleDesc: string, 
-      provider: Provider | null = null,
+      provider: Provider,
       mergeOtherAgentAsUser: boolean = true,
       requestMsg: Message | null = null,
     ) {
@@ -51,7 +55,7 @@ export default class Agent {
         }
       })
 
-      if (this.requestMsg) allMessages.push({role: SYSTEM_NAME, content: this.requestMsg.content});
+      if (this.requestMsg) allMessages.push({role:  , content: this.requestMsg.content});
       else allMessages.push(
           {role: SYSTEM_NAME, content: `Now you speak, ${this.agentName}.${END_OF_MESSAGE}`}
       );
@@ -89,16 +93,16 @@ export default class Agent {
         }
       });
 
-      const completion: ChatCompletionResponse = await this.provider?.query(
+      const completion: ChatCompletionResponse = await this.provider.query(
         messages
-      ) as any; // TODO: clean that
-      console.log(JSON.stringify(completion, null, 2))
+      );
+      // console.log(JSON.stringify(completion, null, 2))
       // console.log(completion.choices[0].message.content)
       let response = completion.choices[0]?.message.content
       console.log("[", this.agentName, "]")//, this.roleDesc);
       console.log(response);
       console.log("=================================");
-      if (!response) throw new Error("No response from provider") // TODO: clean
+      if (!response) throw new Error(`No response from provider ${this.provider.constructor.name} (${this.agentName} )`)
       return response.trim();
     }
 
@@ -107,21 +111,17 @@ export default class Agent {
       environmentDescription: string
     ): Promise<string> {
         try {
-          const response = this.#rawQuery(
+          const response = await this.#rawQuery(
               observation,
               environmentDescription,
-              // requestMsg=None,
           )
 
           return response
         }
-        catch {
+        catch (e: any) {
+          const errMsg = `Agent ${this.agentName} failed to generate a response. Error: ${e?.message ?? e}. Sending signal to end the conversation.`;
 
+          return SIGNAL_END_OF_CONVERSATION + errMsg;
         }
-        //  RetryError as e:
-        //     err_msg = f"Agent {self.name} failed to generate a response. Error: {e.last_attempt.exception()}. Sending signal to end the conversation."
-        //     logging.warning(err_msg)
-        //     response = SIGNAL_END_OF_CONVERSATION + err_msg
-        return "";//TODO: clean
     }
 }
